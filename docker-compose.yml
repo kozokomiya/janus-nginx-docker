@@ -1,0 +1,29 @@
+version: '2'
+services:
+
+    # nginx 0
+  nginx0:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    working_dir: /root
+    volumes:
+      - ./www:/var/www
+      - ./logs:/var/log/nginx
+    ports:
+      - 443:443
+    container_name: nginx0
+
+  # janus 0
+  janus0:
+    build:
+        context: .
+        dockerfile: janus.dockerfile
+    working_dir: /root
+    volumes:
+      - ./www:/var/www
+      - ./logs:/var/log/janus
+    ports:
+      - "8088:8088"
+    container_name: janus0
+
